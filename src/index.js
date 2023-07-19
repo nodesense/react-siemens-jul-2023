@@ -2,11 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
+ 
+
+
 import reportWebVitals from './reportWebVitals';
 
 // default imports are alias by name, only one default import allowed in JS
 // import X from './app/App';
 import App from './app/App';
+
+// to be used later
+import store from './app/store';
+import './app/test-store';
+
 
 //  <React.StrictMode>
 const root = ReactDOM.createRoot(document.getElementById('root'));
