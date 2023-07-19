@@ -16,7 +16,8 @@ const mapStateToProps = (state) => {
     return {
         // state.cart represent cart in combine reducer
         totalItems: state.cart.length,
-        yourName: 'react programmer' // .. pass any props
+        yourName: 'react programmer' // .. pass any props,
+        
     }
 }
 
