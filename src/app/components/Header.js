@@ -17,6 +17,10 @@ export function Header() {
         <NavLink to="/cart" className="button" activeClassName="success">Cart</NavLink>
         <NavLink to="/redux-cart" className="button" activeClassName="success">Redux Cart</NavLink>
         <NavLink to="/checkout" className="button" activeClassName="success">Checkout</NavLink>
+        
+        <NavLink to="/toolkit-counter" className="button" activeClassName="success">Counter</NavLink>
+        
+        
         <Link to="/login"   >Login</Link>
       </div>
     )

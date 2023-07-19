@@ -2,6 +2,7 @@ import { bindActionCreators } from "redux";
 import { addItem, empty, removeItem, updateItem } from "./redux-cart/state/actions";
 import store from "./store";
 import * as actions from './redux-cart/state/actions';
+import { increment, incrementByAmount } from "./redux-cart/state/counterSlice";
 
 console.log("Redux learning....")
 
@@ -90,3 +91,16 @@ console.log("bound addItem", bindActions.addItem)
 // this calls actions.removeItem and dispatch action to remove id 111
 bindActions.removeItem(111)
 console.log("STATE AFTER remove  ", store.getState())
+
+const a1 = increment()
+console.log("SLICE ACTION ", a1)
+
+const a2 = incrementByAmount(100)
+console.log ("incrementByAmount", a2)
+
+store.dispatch(a1)
+store.dispatch(a2)
+
+console.log("Toolkit  ", store.getState())
+
+// increment, decrement, incrementByAmount 
