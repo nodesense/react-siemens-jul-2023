@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { getProducts } from '../state/actions';
+import { addItem, getProducts } from '../state/actions';
 
 const ProductTable = (props) => {
     console.log("ProductTable render", props)
@@ -24,6 +24,14 @@ const ProductTable = (props) => {
         }
     }, [])
 
+    if (errorMessage != '') {
+        return (
+            <div>
+                <h2>Error while loading product .......{errorMessage}</h2>
+            </div>
+        )
+    }
+
     if (loading) {
         return (
             <div>
@@ -41,6 +49,7 @@ const ProductTable = (props) => {
                         <th>Name</th>
                         <th>Price</th>
                         <th>Year</th>
+                        <th>+Cart</th>
                     </tr>
                   
                 {
@@ -54,7 +63,11 @@ const ProductTable = (props) => {
                            </td>
                            <td>{product.price}</td>
                            <td>{product.year}</td>
-                             
+                           <td >
+                                <button onClick={ () => dispatch(addItem({id: product.id, name: product.name, price:product.price, qty: 1}))}>
+                                    +Cart
+                                </button>
+                            </td>  
                         </tr>
                     ))
                 }
