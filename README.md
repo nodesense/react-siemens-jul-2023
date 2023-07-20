@@ -1,16 +1,6 @@
-
-// const a1 = increment()
-// console.log("SLICE ACTION ", a1)
-
-// const a2 = incrementByAmount(100)
-// console.log ("incrementByAmount", a2)
-
-// store.dispatch(a1)
-// store.dispatch(a2)
-
-// console.log("Toolkit  ", store.getState())
-
-// // increment, decrement, incrementByAmount 
+```
+ serve -s build
+``` 
 
 # Getting Started with Create React App
 
