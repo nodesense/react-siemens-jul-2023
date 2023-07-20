@@ -21,6 +21,7 @@ import ProductList from './cart/ProductList';
 // default import is alias name
 import ReduxCart from './redux-cart/containers/Cart';
 import ToolkitCounter from './redux-cart/components/ToolkitCounter';
+import ProductTable from './redux-cart/components/ProductTable';
 
 
 // implement  a useState feature that toggle (show/hide) the Counter component
@@ -56,6 +57,11 @@ const App = () => {
 
                     <Route path="/toolkit-counter">
                         <ToolkitCounter />
+                    </Route>
+
+                    
+                    <Route path="/redux-products">
+                        <ProductTable />
                     </Route>
 
                     <Route path="*">

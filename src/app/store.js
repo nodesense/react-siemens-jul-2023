@@ -3,8 +3,22 @@ import cartReducer from './redux-cart/state/cartReducer';
 import loggerMiddleware from './middlewares/loggerMiddleware';
 import counterSlice from './redux-cart/state/counterSlice';
 import { configureStore } from '@reduxjs/toolkit'
+import thunk from 'redux-thunk';
+
+import productReducer from './redux-cart/state/productSlice';
 
  
+const store = configureStore({
+  reducer: {
+      cart: cartReducer,  //  []
+      counter: counterSlice,  // {value: 0}
+      product: productReducer // {products: [], errorMessage: '', loading: false} 
+  },
+
+  middleware: [loggerMiddleware, thunk]
+})
+ 
+export default store;
 
 // const rootReducer = combineReducers( {
 //     // state: reducer func
@@ -13,21 +27,8 @@ import { configureStore } from '@reduxjs/toolkit'
 // })
 
 // const store = createStore(rootReducer, 
-//                             applyMiddleware(loggerMiddleware))
+//                             applyMiddleware(loggerMiddleware, thunk))
 
+// 
 
-const store = configureStore({
-    reducer: {
-        cart: cartReducer,
-        counter: counterSlice
-    },
-
-    middleware: [loggerMiddleware]
-  })
-  
-//   // Infer the `RootState` and `AppDispatch` types from the store itself
-//   export type RootState = ReturnType<typeof store.getState>
-//   // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-//   export type AppDispatch = typeof store.dispatch
-
-export default store;
+// export default store;

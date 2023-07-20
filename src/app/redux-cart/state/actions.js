@@ -1,4 +1,6 @@
 import * as ActionTypes from "./action-types";
+import { loading, setError, setProduct } from "./productSlice";
+import { fetchProducts } from "./services";
 
 // action creators
 // ES5 style
@@ -39,3 +41,30 @@ export const empty = () => ({
     type: ActionTypes.EMPTY_CART
 })
 
+
+// thunk function 
+export const getProducts = () => {
+    // thunk function
+    return async (dispatch, getState) => {
+        console.log("thunk func called to get products from backend..")
+         
+        try {
+            // set the loading to be true
+            dispatch(loading(true))
+            dispatch(setError(''))
+            const products = await fetchProducts()
+            console.log("Products fetched using thunk ", products)
+            // set the loading to be false
+            dispatch(loading(false))
+
+            // set the products to store
+            dispatch(setProduct(products))
+        } catch (error) {
+            // handle error
+            // set the error to store
+            dispatch(setError(error))
+             // set the loading to be false
+             dispatch(loading(false))
+        }
+    }
+}

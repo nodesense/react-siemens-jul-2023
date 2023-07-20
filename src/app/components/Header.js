@@ -20,6 +20,8 @@ export function Header() {
         
         <NavLink to="/toolkit-counter" className="button" activeClassName="success">Counter</NavLink>
         
+        <NavLink to="/redux-products" className="button" activeClassName="success">Redux Product</NavLink>
+
         
         <Link to="/login"   >Login</Link>
       </div>

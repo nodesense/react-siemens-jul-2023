@@ -1,3 +1,17 @@
+
+// const a1 = increment()
+// console.log("SLICE ACTION ", a1)
+
+// const a2 = incrementByAmount(100)
+// console.log ("incrementByAmount", a2)
+
+// store.dispatch(a1)
+// store.dispatch(a2)
+
+// console.log("Toolkit  ", store.getState())
+
+// // increment, decrement, incrementByAmount 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

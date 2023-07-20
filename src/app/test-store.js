@@ -92,15 +92,62 @@ console.log("bound addItem", bindActions.addItem)
 bindActions.removeItem(111)
 console.log("STATE AFTER remove  ", store.getState())
 
-const a1 = increment()
-console.log("SLICE ACTION ", a1)
+// THUNK MIDDLEWARE FOR ASYNC CALLS
+// addItem is action creator, returns object type 
+const actionObj = addItem({id: 200, price: 45, qty: 1, name: 'test'})
 
-const a2 = incrementByAmount(100)
-console.log ("incrementByAmount", a2)
+console.log ("Action obj type ", typeof actionObj);
 
-store.dispatch(a1)
-store.dispatch(a2)
+// THUNK is useful for deffered calls like timer or ajax calls
+// event occrus or ajax results returns async after delayed period
 
-console.log("Toolkit  ", store.getState())
+function delayedAddItem() {
+    console.log("delayedAddItem called")
+    // the returned function must be called by thunk middleware
+    // middleware shall pass dispatch, getState
+    return function thunkTimerFunc(dispatch, getState) {
+         console.log("Thunk async code is called ..", dispatch, getState)   
+        setTimeout( () => {
+            // logic for async/logic to fetch data from api written here
+            // add item to shopping cart here..
+            // assume we got data after 5 seconds
+            console.log('Inside timeout function after 5 seconds dispatching...')
+            store.dispatch(actionObj)
+        }, 5000)
 
-// increment, decrement, incrementByAmount 
+    }
+
+    // unreachable due to return statement for function
+    console.log("delayedAddItem exit")
+}
+
+console.log("delayedAddItem calling..")
+// thunkFunc is thunkTimerFunc returned by delayedAddItem
+const thunkFunc = delayedAddItem() 
+console.log("delayedAddItem called..")
+
+// action function are sync by default they return object as action {type: emptyCart}
+console.log ("Action obj type ", typeof actionObj); // print object
+// async /thunk action function are async they return a function as action function ..(){...}
+console.log("THUNK FUnc type is ", typeof thunkFunc) // print 'function'
+
+// calling thunk async code ourself
+
+// dispatch a message after 5 seconds
+// thunkFunc() // this calls thunkTimerFunc returned by delayedAddItem
+
+
+// now we dont' call thunkFunc ourself..
+
+// dispatch thunkFunc like any other action object, it will break the app
+// we will have thunk middleware which will invoke the thunk func..
+
+console.log("DISPATCHING thunk function..")
+store.dispatch(thunkFunc)
+
+// return thunk function
+const getProdThunkFunc = actions.getProducts()
+console.log("getProdThunkFunc", getProdThunkFunc)
+
+console.log("DISPATCHING getProductsThunk func")
+store.dispatch(getProdThunkFunc)
